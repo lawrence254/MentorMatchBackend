@@ -20,7 +20,7 @@ public class SecurityConfig {
             .disable()
             .authorizeHttpRequests()
             .requestMatchers("/auth/**").permitAll()
-            .requestMatchers(HttpMethod.POST, "/user/").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/user/**").permitAll()
             .anyRequest()
             .authenticated()
             .and()
