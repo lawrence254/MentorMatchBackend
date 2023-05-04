@@ -1,6 +1,7 @@
 package com.karanjalawrence.mentormatch.mentormatch.API;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -33,22 +34,25 @@ public class UserDetailsController {
     private final ObjectMapper objectMapper;
 
     @PostMapping("/{id}/details")
-    public ResponseEntity<UserDetails> createUserDetails(@PathVariable String id, @RequestBody UserDetails details){
+    public ResponseEntity<UserDetails> createUserDetails(@PathVariable String id, @RequestBody UserDetails details) {
         User user = userRepository.getReferenceById(UUID.fromString(id));
         details.setUser(user);
         return ResponseEntity.ok().body(userDetailsImpl.createUserDetails(details));
     }
+
     @GetMapping("/details")
-    public ResponseEntity<List<UserDetails>> getAlluserDetails(){
+    public ResponseEntity<List<UserDetails>> getAlluserDetails() {
         return ResponseEntity.ok().body(userDetailsImpl.getAllUsers());
     }
+
     @GetMapping("/details/{id}")
-    public ResponseEntity<Optional<UserDetails>> getuserDetailsById(@PathVariable String id){
+    public ResponseEntity<Optional<UserDetails>> getuserDetailsById(@PathVariable String id) {
         return ResponseEntity.ok().body(userDetailsImpl.getUserDetailsById(UUID.fromString(id)));
     }
 
     @PatchMapping("/details/{id}")
-    public ResponseEntity<UserDetails> updateUserDetailsById(@PathVariable String id, @RequestBody UserDetails user) throws JsonMappingException{
+    public ResponseEntity<UserDetails> updateUserDetailsById(@PathVariable String id,
+            @RequestBody Map<String, Object> user) throws JsonMappingException {
         UserDetails existingUser = userDetailsImpl.getUserDetailsById(UUID.fromString(id)).get();
         var updatedDetails = objectMapper.updateValue(existingUser, user);
 

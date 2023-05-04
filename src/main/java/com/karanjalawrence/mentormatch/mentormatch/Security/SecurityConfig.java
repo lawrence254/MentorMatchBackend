@@ -20,6 +20,7 @@ public class SecurityConfig {
             .authorizeHttpRequests()
             .requestMatchers("/auth/**").permitAll()
             .requestMatchers("/api/user/**").permitAll()
+            .requestMatchers("/api/skills/**").permitAll()
             .anyRequest()
             .authenticated()
             .and()
