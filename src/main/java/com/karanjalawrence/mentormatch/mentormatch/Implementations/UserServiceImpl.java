@@ -18,10 +18,15 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-
+    
     @Override
     public User createUserAccount(User user) {
         return userRepository.save(user);
+    }
+    
+    @Override
+    public List<User> bulkCreateUsers(List<User> users) {
+        return userRepository.saveAll(users);
     }
 
     @Override
@@ -48,5 +53,6 @@ public class UserServiceImpl implements UserService {
     public void deleteUserByUUID(UUID uuid) {
         userRepository.deleteById(uuid);
     }
+
 
 }
