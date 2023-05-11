@@ -68,7 +68,7 @@ public class MeetingController {
     }
 
     @PatchMapping("{id}")
-    public ResponseEntity<Meeting> updateMeeting(@PathVariable String id, Map<String, Object> details) throws JsonMappingException{
+    public ResponseEntity<Meeting> updateMeeting(@PathVariable String id, @RequestBody Map<String, Object> details) throws JsonMappingException{
         Meeting meet = meetingService.getMeetingById(UUID.fromString(id)).get();
         
         var updatedMeeting = objectMapper.updateValue(meet, details);

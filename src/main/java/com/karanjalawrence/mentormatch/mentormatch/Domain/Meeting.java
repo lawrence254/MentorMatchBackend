@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,6 +37,7 @@ public class Meeting {
     @JoinColumn(name = "meet_with")
     private UserDetails with;
     @Column(name = "meeting_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date mDate;
     private MStatus status;
     @Column(name ="reschedule_date", nullable = true)
