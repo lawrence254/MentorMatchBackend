@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class GoalsImplementation implements GoalsService{
+public class GoalsImpl implements GoalsService{
 
     private final GoalsRepository goalsRepository;
     
