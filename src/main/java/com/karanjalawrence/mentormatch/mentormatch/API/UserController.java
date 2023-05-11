@@ -34,6 +34,12 @@ public class UserController {
     public ResponseEntity<User> createUserAccount(@RequestBody User user){
         return ResponseEntity.ok().body(userService.createUserAccount(user));
     }
+
+    @PostMapping("/bulk")
+    public ResponseEntity<List<User>> bulkCreateUserAccounts(@RequestBody List<User> users){
+        return ResponseEntity.ok().body(userService.bulkCreateUsers(users));
+    }
+
     @GetMapping
     public ResponseEntity<List<User>> getAllUserAccounts(){
         return ResponseEntity.ok().body(userService.getAllUsers());
