@@ -12,6 +12,7 @@ public interface MeetingService {
     List<Meeting> getAllMeetings();
     Optional<Meeting> getMeetingById(UUID id);
     Optional<List<Meeting>> getAllUserMeetings(UserDetails user);
+    Optional<List<Meeting>> getAllMentorMeetings(UserDetails user);
     Meeting updateMeeting(Meeting meeting);
     void deleteMeetingById(UUID id);
 }

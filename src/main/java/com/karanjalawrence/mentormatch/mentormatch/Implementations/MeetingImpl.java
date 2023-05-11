@@ -34,7 +34,12 @@ public class MeetingImpl implements MeetingService {
 
     @Override
     public Optional<List<Meeting>> getAllUserMeetings(UserDetails user) {
-        return meetingRepository.findAllUserMeetings(user);
+        return meetingRepository.findByUser(user);
+    }
+
+    @Override
+    public Optional<List<Meeting>> getAllMentorMeetings(UserDetails user) {
+        return meetingRepository.findByWith(user);
     }
 
     @Override

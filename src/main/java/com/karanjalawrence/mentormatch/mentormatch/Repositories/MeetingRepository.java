@@ -10,5 +10,6 @@ import com.karanjalawrence.mentormatch.mentormatch.Domain.Meeting;
 import com.karanjalawrence.mentormatch.mentormatch.Domain.UserDetails;
 
 public interface MeetingRepository extends JpaRepository<Meeting, UUID>{
-    Optional<List<Meeting>> findAllUserMeetings(UserDetails user);
+    Optional<List<Meeting>> findByUser(UserDetails user);
+    Optional<List<Meeting>> findByWith(UserDetails user);
 }
