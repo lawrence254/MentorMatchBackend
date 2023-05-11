@@ -24,13 +24,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "mentor_users")
+@Table(name = "user_details")
 public class UserDetails {
     @Id
     @GeneratedValue
     private UUID user_uuid;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "mentor_user_id")
+    @JoinColumn(name = "user_id")
     private User user;
     private String first_name;
     private String last_name;
