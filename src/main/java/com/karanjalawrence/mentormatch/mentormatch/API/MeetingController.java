@@ -1,6 +1,5 @@
 package com.karanjalawrence.mentormatch.mentormatch.API;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -24,8 +23,6 @@ import com.karanjalawrence.mentormatch.mentormatch.Domain.Meeting;
 import com.karanjalawrence.mentormatch.mentormatch.Domain.UserDetails;
 import com.karanjalawrence.mentormatch.mentormatch.Repositories.UserDetailsRepository;
 import com.karanjalawrence.mentormatch.mentormatch.Services.MeetingService;
-import com.karanjalawrence.mentormatch.mentormatch.Util.StringToDateConverter;
-
 import lombok.RequiredArgsConstructor;
 
 @RestController
