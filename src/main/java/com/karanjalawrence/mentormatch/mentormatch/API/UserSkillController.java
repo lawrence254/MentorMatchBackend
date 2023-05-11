@@ -20,7 +20,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.karanjalawrence.mentormatch.mentormatch.Domain.UserDetails;
 import com.karanjalawrence.mentormatch.mentormatch.Domain.UserSkill;
-import com.karanjalawrence.mentormatch.mentormatch.Implementations.UserSkillServiceImpl;
 import com.karanjalawrence.mentormatch.mentormatch.Repositories.UserDetailsRepository;
 import com.karanjalawrence.mentormatch.mentormatch.Services.UserSkillService;
 

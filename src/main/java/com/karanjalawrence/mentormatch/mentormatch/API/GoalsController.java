@@ -21,7 +21,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.karanjalawrence.mentormatch.mentormatch.Domain.Goal;
 import com.karanjalawrence.mentormatch.mentormatch.Domain.UserDetails;
-import com.karanjalawrence.mentormatch.mentormatch.Implementations.GoalsImplementation;
 import com.karanjalawrence.mentormatch.mentormatch.Repositories.GoalsRepository;
 import com.karanjalawrence.mentormatch.mentormatch.Repositories.UserDetailsRepository;
 import com.karanjalawrence.mentormatch.mentormatch.Services.GoalsService;
