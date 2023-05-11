@@ -24,6 +24,7 @@ import com.karanjalawrence.mentormatch.mentormatch.Domain.UserDetails;
 import com.karanjalawrence.mentormatch.mentormatch.Implementations.GoalsImplementation;
 import com.karanjalawrence.mentormatch.mentormatch.Repositories.GoalsRepository;
 import com.karanjalawrence.mentormatch.mentormatch.Repositories.UserDetailsRepository;
+import com.karanjalawrence.mentormatch.mentormatch.Services.GoalsService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +33,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/goals")
 public class GoalsController {
     private final GoalsRepository goalsRepository;
-    private final GoalsImplementation goalsImplementation;
+    private final GoalsService goalsService;
     private final ObjectMapper objectMapper;
     private final UserDetailsRepository userDetailsRepository;
 
@@ -40,22 +41,22 @@ public class GoalsController {
     public ResponseEntity<Goal> createGoal(@PathVariable String id, @RequestBody Goal goal){
         UserDetails user = userDetailsRepository.findById(UUID.fromString(id)).get();
         goal.setUser(user);        
-        return ResponseEntity.ok().body(goalsImplementation.createGoal(goal));
+        return ResponseEntity.ok().body(goalsService.createGoal(goal));
     }
 
     @GetMapping
     public ResponseEntity<List<Goal>> getAllGoals(){
-        return ResponseEntity.ok().body(goalsImplementation.getAllGoals());
+        return ResponseEntity.ok().body(goalsService.getAllGoals());
     }
     @GetMapping("{id}")
     public ResponseEntity<Optional<Goal>> getGoalById(@PathVariable String id){
-        return ResponseEntity.ok().body(goalsImplementation.getGoalById(UUID.fromString(id)));
+        return ResponseEntity.ok().body(goalsService.getGoalById(UUID.fromString(id)));
     }
 
     @GetMapping("/")
     public ResponseEntity<Optional<List<Goal>>> getGoalsByUser(@RequestParam String user){
         UserDetails userD = userDetailsRepository.findById(UUID.fromString(user)).get();
-        return ResponseEntity.ok().body(goalsImplementation.getGoalsByUserID(userD));
+        return ResponseEntity.ok().body(goalsService.getGoalsByUserID(userD));
     }
 
     @PatchMapping("{id}")
@@ -63,14 +64,14 @@ public class GoalsController {
         Goal existinGoal = goalsRepository.findById(UUID.fromString(id)).get();
         
         var newGoal = objectMapper.updateValue(existinGoal, goal);
-        return ResponseEntity.ok().body(goalsImplementation.updateGoal(newGoal));
+        return ResponseEntity.ok().body(goalsService.updateGoal(newGoal));
         
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteGoalById(@PathVariable String id){
         try {
-            goalsImplementation.deleteGoalById(UUID.fromString(id));
+            goalsService.deleteGoalById(UUID.fromString(id));
         } catch (Exception e) {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to delete the goal because of: "+e.getMessage());
         }
