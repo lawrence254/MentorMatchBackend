@@ -1,6 +1,8 @@
 package com.karanjalawrence.mentormatch.mentormatch.API;
 
+
 import java.text.ParseException;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -35,7 +37,9 @@ public class MeetingController {
     private final UserDetailsRepository userDetailsRepository;
 
     @PostMapping
+
     public ResponseEntity<Meeting> createMeeting(@RequestParam String with, @RequestParam String user, @RequestBody Meeting meeting) throws ParseException{
+
 
         UserDetails userD = userDetailsRepository.findById(UUID.fromString(user)).get();
         UserDetails withD = userDetailsRepository.findById(UUID.fromString(with)).get();
@@ -70,6 +74,7 @@ public class MeetingController {
 
     @PatchMapping("{id}")
     public ResponseEntity<Meeting> updateMeeting(@PathVariable String id, @RequestBody Map<String, Object> details) throws JsonMappingException{
+
         Meeting meet = meetingService.getMeetingById(UUID.fromString(id)).get();
         
         var updatedMeeting = objectMapper.updateValue(meet, details);
