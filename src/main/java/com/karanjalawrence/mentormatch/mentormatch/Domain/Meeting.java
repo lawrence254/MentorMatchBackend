@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
@@ -33,7 +32,7 @@ public class Meeting {
     @Column(name = "meeting_date")
     private Date mDate;
     private MStatus status;
-    @Column(name ="reschedule_date")
+    @Column(name ="reschedule_date", nullable = true)
     private Date rescheduleTo;
     @CreationTimestamp
     private Date created_at;
