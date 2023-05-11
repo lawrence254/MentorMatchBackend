@@ -9,6 +9,8 @@ import com.karanjalawrence.mentormatch.mentormatch.Domain.User;
 public interface UserService {
     User createUserAccount(User user);
 
+    List<User> bulkCreateUsers(List<User> users);
+
     List<User> getAllUsers();
 
     Optional<User> getUserByEmail(String email);
