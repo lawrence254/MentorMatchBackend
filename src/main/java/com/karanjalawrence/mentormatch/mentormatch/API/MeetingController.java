@@ -1,5 +1,6 @@
 package com.karanjalawrence.mentormatch.mentormatch.API;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -23,18 +24,22 @@ import com.karanjalawrence.mentormatch.mentormatch.Domain.Meeting;
 import com.karanjalawrence.mentormatch.mentormatch.Domain.UserDetails;
 import com.karanjalawrence.mentormatch.mentormatch.Repositories.UserDetailsRepository;
 import com.karanjalawrence.mentormatch.mentormatch.Services.MeetingService;
+import com.karanjalawrence.mentormatch.mentormatch.Util.StringToDateConverter;
+
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/meeting")
 @RequiredArgsConstructor
+@Slf4j
 public class MeetingController {
     private final MeetingService meetingService;
     private final ObjectMapper objectMapper;
     private final UserDetailsRepository userDetailsRepository;
 
     @PostMapping
-    public ResponseEntity<Meeting> createMeeting(@RequestParam String with, @RequestParam String user, @RequestBody Meeting meeting){
+    public ResponseEntity<Meeting> createMeeting(@RequestParam String with, @RequestParam String user, @RequestBody Meeting meeting) throws ParseException{
 
         UserDetails userD = userDetailsRepository.findById(UUID.fromString(user)).get();
         UserDetails withD = userDetailsRepository.findById(UUID.fromString(with)).get();
@@ -68,9 +73,13 @@ public class MeetingController {
     }
 
     @PatchMapping("{id}")
-    public ResponseEntity<Meeting> updateMeeting(@PathVariable String id, Map<String, Object> details) throws JsonMappingException{
+    public ResponseEntity<Meeting> updateMeeting(@PathVariable String id, @RequestBody Map<String, Object> details) throws JsonMappingException{
         Meeting meet = meetingService.getMeetingById(UUID.fromString(id)).get();
-        
+        // var meetDate= details.get("mDate").toString();
+        // log.info("Date in {} is {} and will be updated to: {}", details, meetDate, 
+        //         StringToDateConverter.getDateFromString(meetDate));
+        // details.remove("mDate");
+        // details.putIfAbsent("mDate", StringToDateConverter.getDateFromString(meetDate));
         var updatedMeeting = objectMapper.updateValue(meet, details);
 
         return ResponseEntity.ok().body(meetingService.updateMeeting(updatedMeeting));
