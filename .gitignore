@@ -31,6 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
-
+**/META-INF
 ### Logs ###
 /logs/
+
+### Application Properties ###
+**/application.properties
