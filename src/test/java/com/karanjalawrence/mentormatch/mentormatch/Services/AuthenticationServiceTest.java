@@ -82,7 +82,6 @@ class AuthenticationServiceTest {
         verify(userRepository, times(1)).save(any(User.class));
         verify(jwtConfig, times(1)).generateToken(any(User.class));
         verify(tokenRepository, times(1)).save(any(Token.class));
-        // verify(authenticationService, times(1)).saveUserToken(any(User.class), anyString()); Verify that the tokens are actually saved
     }
 
     @Test

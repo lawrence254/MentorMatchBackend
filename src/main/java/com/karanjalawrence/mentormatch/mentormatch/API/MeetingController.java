@@ -81,7 +81,7 @@ public class MeetingController {
         try {
             meetingService.deleteMeetingById(UUID.fromString(id));
         } catch (Exception e) {
-            ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to delete meeting due to: "+e.getMessage());
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to delete meeting due to: "+e.getMessage());
         }
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Meeting has been deleted successfully");
