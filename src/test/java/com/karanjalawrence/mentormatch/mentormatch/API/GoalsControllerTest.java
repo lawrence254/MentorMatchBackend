@@ -15,7 +15,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -138,24 +137,25 @@ public class GoalsControllerTest {
 
     }
 
-    @Disabled
+    // @Disabled
     @Test
     void testUpdateGoalbyID() throws JsonMappingException {
+        
         UUID id = UUID.randomUUID();
 
-        Goal goal = new Goal();
+        Goal existingGoal = new Goal();
         Goal updatedGoal = new Goal();
 
         Map<String, Object> update = new HashMap<>();
         update.put("goal", "update");
 
-        when(goalsService.getGoalById(any(UUID.class))).thenReturn(Optional.of(goal));
+        when(goalsRepository.findById(any(UUID.class))).thenReturn(Optional.of(existingGoal));
         when(objectMapper.updateValue(any(Goal.class), any(Map.class))).thenReturn(updatedGoal);
         when(goalsService.updateGoal(any(Goal.class))).thenReturn(updatedGoal);
 
         ResponseEntity<Goal> response = goalsController.updateGoalbyID(id.toString(), update);
 
-        verify(goalsService, times(1)).getGoalById(any(UUID.class));
+        verify(goalsRepository, times(1)).findById(any(UUID.class));
         verify(objectMapper, times(1)).updateValue(any(Goal.class), any(Map.class));
         verify(goalsService, times(1)).updateGoal(any(Goal.class));
 
