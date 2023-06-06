@@ -59,11 +59,11 @@ public class JWTConfig {
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
-    private boolean isTokenExpired(String token) {
+    boolean isTokenExpired(String token) {
         return extractExpiryDate(token).before(new Date());
     }
 
-    private Date extractExpiryDate(String token) {
+    Date extractExpiryDate(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
 }
